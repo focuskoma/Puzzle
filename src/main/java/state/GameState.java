@@ -1,17 +1,17 @@
-package main;
+package state;
 
-import javafx.application.Application;
+import javafx.scene.input.KeyCode;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 
-public class Main{
+public class GameState {
 
-    public static int[][] tabla;
-    public static int lepes=0;
+    private int[][] tabla;
+    private static int lepes;
 
-    public Main(){
+    public GameState() {
+        lepes=0;
         ArrayList<Integer> szamok = new ArrayList<>();
         for (int i = 8; i >= 0; i--) {
             szamok.add(i);
@@ -22,26 +22,16 @@ public class Main{
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                tabla[i][j]=szamok.get(0);
+                tabla[i][j] = szamok.get(0);
                 szamok.remove(0);
             }
         }
-
     }
 
     public boolean win(){
         return tabla[0][0] == 1 && tabla[0][1] == 2 && tabla[0][2] == 3 &&
                 tabla[1][0] == 4 && tabla[1][1] == 5 && tabla[1][2] == 6 &&
                 tabla[2][0] == 7 && tabla[2][1] == 8 && tabla[2][2] == 0;
-    }
-
-    public void rajzol(){
-        for (int i = 0; i < 3; i++) {
-            System.out.println();
-            for (int j = 0; j < 3; j++) {
-                System.out.print(tabla[i][j] + " ");
-            }
-        }
     }
 
     public int[] ures(){
@@ -62,7 +52,6 @@ public class Main{
         int a=ures()[0];
         int b=ures()[1];
         if (b!=2) {
-            System.out.println("ures index: " + a + " " + b);
             int seged = tabla[a][b + 1];
             tabla[a][b + 1] = 0;
             tabla[a][b] = seged;
@@ -76,7 +65,6 @@ public class Main{
         int a=ures()[0];
         int b=ures()[1];
         if (b!=0) {
-            System.out.println("ures index: " + a + " " + b);
             int seged = tabla[a][b - 1];
             tabla[a][b - 1] = 0;
             tabla[a][b] = seged;
@@ -91,7 +79,6 @@ public class Main{
         int a=ures()[0];
         int b=ures()[1];
         if (a!=0) {
-            System.out.println("ures index: " + a + " " + b);
             int seged = tabla[a - 1][b];
             tabla[a - 1][b] = 0;
             tabla[a][b] = seged;
@@ -105,7 +92,6 @@ public class Main{
         int a=ures()[0];
         int b=ures()[1];
         if (a!=2) {
-            System.out.println("ures index: " + a + " " + b);
             int seged = tabla[a + 1][b];
             tabla[a + 1][b] = 0;
             tabla[a][b] = seged;
@@ -115,45 +101,27 @@ public class Main{
         }
     }
 
-    public static void main(String[] args) {
-
-        /*
-        Scanner sc = new Scanner(System.in);
-        Main main = new Main();
-
-        String be="";
-
-        System.out.println("\n\nIrányító gombok: W,A,S,D\n\nE-vel kilép.\n\n");
-
-
-        main.rajzol();
-
-        while (be!="e"){
-            if (!main.win()) {
-                System.out.print("       merre: ");
-                be = sc.next();
-                switch (be) {
-                    case "a":
-                        main.balra();
-                        break;
-                    case "d":
-                        main.jobbra();
-                        break;
-                    case "s":
-                        main.le();
-                        break;
-                    case "w":
-                        main.fel();
-                        break;
-                }
-                main.rajzol();
-            } else {
-                System.out.println("\n\nVége a játéknak.");
-                System.out.println("Lépésszám: " + lepes);
-                break;
-            }
+    public void mozgatas(KeyCode irany){
+        switch (irany.toString()) {
+            case "A": balra(); break;
+            case "D": jobbra(); break;
+            case "S": le(); break;
+            case "W": fel(); break;
         }
-         */
-        Application.launch(MyApp.class, args);
+    }
+
+    public int getlepes() {
+        return this.lepes;
+    }
+
+    public int[][] getallas(){
+        return this.tabla;
+    }
+
+    public void gyoztespoz(){
+        tabla[0][0]=1;tabla[0][1]=2;tabla[0][2]=3;
+        tabla[1][0]=4;tabla[1][1]=5;tabla[1][2]=6;
+        tabla[2][0]=7;tabla[2][1]=0;tabla[2][2]=8;
     }
 }
+

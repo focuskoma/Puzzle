@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #404040;" xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ScoreController">
+   <children>
+      <TableView fx:id="scoreTable" editable="true" layoutX="125.0" layoutY="77.0" prefHeight="521.0" prefWidth="650.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="43.0" text="ID" />
+          <TableColumn fx:id="jatekos" prefWidth="194.0" text="Játékos" />
+            <TableColumn fx:id="win" prefWidth="70.4000244140625" text="Győzelem" />
+            <TableColumn fx:id="lepes" prefWidth="127.19998168945312" text="Lépés" />
+            <TableColumn fx:id="date" prefWidth="215.0" text="Dátum" />
+        </columns>
+      </TableView>
+      <Label layoutX="308.0" layoutY="14.0" text="Eredménytábla" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font>
+      </Label>
+      <Button layoutX="271.0" layoutY="619.0" mnemonicParsing="false" onMouseClicked="#fomenu" prefHeight="56.0" prefWidth="358.0" text="Főmenü">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font></Button>
+   </children>
+</Pane>
