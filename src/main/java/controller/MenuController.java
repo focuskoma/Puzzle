@@ -43,7 +43,7 @@ public class MenuController {
     }
 
     public void eredmenyKatt(MouseEvent mouseEvent) throws Exception{
-        log.info("Eredménytábla gomb megnyomva.");
+        log.info("Scoreboard button is clicked.");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/score.fxml"));
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();

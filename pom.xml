@@ -8,7 +8,7 @@
     <artifactId>Puzzle</artifactId>
     <version>1.0</version>
 
-    <description>Puzzle game</description>
+    <description>2048 game</description>
     <scm>
         <connection>scm:git:https://github.com/focuskoma/Puzzle.git</connection>
         <developerConnection>scm:git:https://github.com/focuskoma/Puzzle.git</developerConnection>

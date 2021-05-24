@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
+/*
  * Egy olyan osztály amelynek adattagjai a játékos által jászott játék eredmményeit tartalmazza.
  */
 @AllArgsConstructor
