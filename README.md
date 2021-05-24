@@ -1,4 +1,4 @@
-# 2048
+# Puzzle
 
 This is a simple game: Puzzle. The program is created by
 using Java 15, JavaFX, H2 Database Engine and Maven.
