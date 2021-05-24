@@ -42,7 +42,7 @@ public interface EredmenyDao {
     List<Eredmeny> list();
 
     /**
-     * @param id -val megegyező eredmeny elemet megkeresi, majd
+     * @param id-val megegyező eredmeny elemet megkeresi, majd
      * @return az ehhez tartozó összes mezővel.
      */
     @SqlQuery("SELECT * FROM eredmeny WHERE id = :id")
