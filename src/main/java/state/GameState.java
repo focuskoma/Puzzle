@@ -1,13 +1,13 @@
 package state;
 
 import javafx.scene.input.KeyCode;
-
-import java.util.ArrayList;
-import java.util.Collections;
+import lombok.extern.log4j.Log4j2;
+import java.util.Random;
 
 /**
  * A játék működéséhez szükséges metódusokat tartalmazza.
  */
+@Log4j2
 public class GameState {
 
     private int[][] tabla;
@@ -17,14 +17,22 @@ public class GameState {
      * Példányosít egy 3X3-as mátrixot, és feltölti véletlenszerűen 0-tól 8-ig számokkal.
      */
     public GameState() {
+        tabla = new int[][]
+                {{1,2,3},
+                 {4,5,6},
+                 {7,8,0}};
+
+        kever();
         lepes=0;
+
+        /*  Ez a rész volt eredetileg a számok összekeverésének a kódja, de rájöttem, hogy
+            olyan állásokat is tud generálni, amit nem lehet kirakni.
+
         ArrayList<Integer> szamok = new ArrayList<>();
         for (int i = 8; i >= 0; i--) {
             szamok.add(i);
         }
         Collections.shuffle(szamok);
-
-        tabla = new int[3][3];
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -32,6 +40,8 @@ public class GameState {
                 szamok.remove(0);
             }
         }
+         */
+
     }
 
     /**
@@ -73,8 +83,6 @@ public class GameState {
             tabla[a][b + 1] = 0;
             tabla[a][b] = seged;
             lepes++;
-        } else{
-            System.out.println("Oda nem lehet lépni.");
         }
     }
 
@@ -89,10 +97,7 @@ public class GameState {
             tabla[a][b - 1] = 0;
             tabla[a][b] = seged;
             lepes++;
-        } else{
-            System.out.println("Oda nem lehet lépni.");
         }
-
     }
 
     /**
@@ -106,8 +111,6 @@ public class GameState {
             tabla[a - 1][b] = 0;
             tabla[a][b] = seged;
             lepes++;
-        } else{
-            System.out.println("Oda nem lehet lépni.");
         }
     }
 
@@ -122,8 +125,6 @@ public class GameState {
             tabla[a + 1][b] = 0;
             tabla[a][b] = seged;
             lepes++;
-        } else{
-            System.out.println("Oda nem lehet lépni.");
         }
     }
 
@@ -159,6 +160,24 @@ public class GameState {
      */
     public void setallas(int[][] tabla){
         this.tabla = tabla;
+    }
+
+    /**
+     * A tabla matrix összekeverése egy kirakható állásra.
+     */
+    public void kever(){
+        log.info("A puzzle összekeverése.");
+        Random rand = new Random();
+        int x;
+        for (int i=0;i<1000;i++){
+            x = rand.nextInt(4);
+            switch (x){
+                case 0: balra(); break;
+                case 1: jobbra(); break;
+                case 2: le(); break;
+                case 3: fel(); break;
+            }
+        }
     }
 
     /**

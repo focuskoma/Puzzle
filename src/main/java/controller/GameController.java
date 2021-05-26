@@ -54,6 +54,9 @@ public class GameController {
     private Label azon_21;
 
     @FXML
+    private Label azon_12;
+
+    @FXML
     public void initialize() {
         ujjatekKatt();
         try {
@@ -105,6 +108,7 @@ public class GameController {
         } else{
             azon_21.setText("8");
             azon_22.setText("");
+            azon_12.setText("6");
             vege.setVisible(true);
             eredmenytabla.setVisible(true);
             alliteredmeny();
@@ -172,7 +176,12 @@ public class GameController {
         int minute = now.getMinute();
         int second = now.getSecond();
 
-        String timenow = year + "-" + month + "-" + day + "  " + hour + ":" + minute + ":" + (10>second ? "0" + second : second);
+        String timenow = year + "-" +
+                (10>month ? "0" + month : month) + "-" +
+                (10>day ? "0" + day : day) + "     " +
+                (10>hour ? "0" + hour : hour) + ":" +
+                (10>minute ? "0" + minute : minute) + ":" +
+                (10>second ? "0" + second : second);
 
         Eredmeny ered = Eredmeny.builder()
                 .jatekos(nev)
